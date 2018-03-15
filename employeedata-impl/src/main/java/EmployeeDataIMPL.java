@@ -1,5 +1,6 @@
 import akka.NotUsed;
 import com.google.inject.Inject;
+import com.knoldus.lagom.assignment3.CassandraData;
 import com.knoldus.lagom.assignment3.DataResponse;
 import com.knoldus.lagom.assignment3.EmployeeDataService;
 import com.knoldus.lagom.assignment3.ExternalService;
@@ -7,6 +8,7 @@ import com.lightbend.lagom.javadsl.api.ServiceCall;
 import com.lightbend.lagom.javadsl.persistence.cassandra.CassandraSession;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 public class EmployeeDataIMPL implements EmployeeDataService {
     private ExternalService externalService;
@@ -16,6 +18,17 @@ public class EmployeeDataIMPL implements EmployeeDataService {
     EmployeeDataIMPL(ExternalService externalService, CassandraSession cassandraSession) {
         this.externalService = externalService;
         this.cassandraSession = cassandraSession;
+    }
+
+    @Override
+    public ServiceCall<CassandraData, String> postToDB() {
+
+        return request -> {
+            cassandraSession.executeWrite(Constants.POST_EMPLOYEE,request.getId(),request.getAge(),request.getCity(),
+                    request.getFirstName(),request.getLastName());
+            return CompletableFuture.completedFuture("Data Submitted");
+        };
+
     }
 
     @Override
@@ -38,4 +51,6 @@ public class EmployeeDataIMPL implements EmployeeDataService {
                                     .build()))
                 );
     }
+
+
 }
