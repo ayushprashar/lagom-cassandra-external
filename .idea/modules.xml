@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/assignment-lagom.iml" filepath="$PROJECT_DIR$/assignment-lagom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/employeedata-api/employeedata-api.iml" filepath="$PROJECT_DIR$/employeedata-api/employeedata-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/employeedata-impl/employeedata-impl.iml" filepath="$PROJECT_DIR$/employeedata-impl/employeedata-impl.iml" />
+    </modules>
+  </component>
+</project>
